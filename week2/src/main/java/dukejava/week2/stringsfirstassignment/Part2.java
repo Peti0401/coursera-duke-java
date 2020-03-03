@@ -1,10 +1,8 @@
 package dukejava.week2.stringsfirstassignment;
 
-public class Part1 {
+public class Part2 {
 
-    public static String findSimpleGene(String dna) {
-        final String startCodon = "ATG";
-        final String endCodon = "TAA";
+    public static String findSimpleGene(String dna, String startCodon, String endCodon) {
         if (!dna.contains(startCodon) || !dna.contains(endCodon)) return "";
 
         final int startIndex = dna.indexOf(startCodon);
@@ -12,10 +10,6 @@ public class Part1 {
         final String dnaStrand = dna.substring(startIndex, endIndex + 1);
 
         return dnaStrand.length() % 3 == 0 ? dnaStrand : "";
-    }
-
-    public static void main(String[] args) {
-        findSimpleGene("AAATGCCCTAACTAGATTAAGAAACC");
     }
 
 }
