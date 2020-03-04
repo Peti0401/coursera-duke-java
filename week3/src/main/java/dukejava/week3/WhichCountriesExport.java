@@ -40,8 +40,8 @@ public class WhichCountriesExport {
         return csvParser.getRecords().stream()
                 .filter(csvRecord -> {
                     List<String> exportList = Arrays.asList(csvRecord.get(1).split(", "));
-                    boolean containsItem1 = exportList.contains(item1);
-                    boolean containsItem2 = exportList.contains(item2);
+                    boolean containsItem1 = exportList.stream().anyMatch(s -> s.contains(item1));
+                    boolean containsItem2 = exportList.stream().anyMatch(s -> s.contains(item2));
                     return containsItem1 && containsItem2;
                 })
                 .map(csvRecord -> csvRecord.get(0))
@@ -52,8 +52,11 @@ public class WhichCountriesExport {
         FileResource fileResource = new FileResource("/Users/gyarmatip/Documents/Coding/LearningProjects/Coursera/Java Programming - Solving Problems with Software/duke-java-projects/week3/src/main/resources/dukejava/week3/exportdata.csv");
         CSVParser csvParser = fileResource.getCSVParser();
         //System.out.println(countryInfo(csvParser, "Algeria"));
-        List<String> list = listExportersTwoProducts(csvParser, "opium", "cotton");
-        System.out.println("list = " + list);
+        //List<String> list = listExportersTwoProducts(csvParser, "cotton", "flowers");
+        //System.out.println("list = " + list);
+
+        System.out.println(whichCountriesExport(csvParser, "cocoa").size());
+        System.out.println("$999,999,999,999".length());
     }
 
 }
